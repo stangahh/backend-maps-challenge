@@ -1,0 +1,6 @@
+{
+  "editor.codeActionsOnSave": {
+    // Fixes lint issues on save, matching the `.eslintrc.js` configuration
+    "source.fixAll.eslint": true
+  }
+}
