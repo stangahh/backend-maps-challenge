@@ -9,7 +9,7 @@
     "build": "npm run build-ts",
     "dev": "npm run tsc -- -w",
     "lint": "npx eslint .",
-    "test": "npx jest",
+    "test": "npx jest --coverage=true",
     "prepare": "husky install"
   },
   "author": "Jesse Stanger",
