@@ -5,7 +5,9 @@
   "main": "dist/index.js",
   "scripts": {
     "tsc": "tsc",
-    "build-ts": "tsc"
+    "build-ts": "tsc",
+    "build": "npm run build-ts",
+    "dev": "npm run tsc -- -w"
   },
   "author": "Jesse Stanger",
   "license": "ISC",

@@ -7,3 +7,14 @@
     2. `cd` to project directory
     3. Install the matching node version for this application with `nvm install`
     4. Activate that version for use in this terminal session with `nvm use`.
+
+## Dev
+
+```
+npm run dev
+```
+## Build
+
+```
+npm run build
+```
