@@ -1,0 +1,15 @@
+{
+  "name": "backend-maps-challenge",
+  "version": "1.0.0",
+  "description": "A node module coding challenge for retrieving google maps results based on string input",
+  "main": "dist/index.js",
+  "scripts": {
+    "tsc": "tsc",
+    "build-ts": "tsc"
+  },
+  "author": "Jesse Stanger",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.2.3"
+  }
+}
