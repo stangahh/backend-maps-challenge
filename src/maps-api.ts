@@ -6,7 +6,9 @@ import { PlaceDetailsResponseData } from '@googlemaps/google-maps-services-js/di
 import { FindPlaceFromTextResponseData } from '@googlemaps/google-maps-services-js/dist/places/findplacefromtext'
 
 export class MapsAPIHelper {
+  /** Google Maps Services Client */
   private readonly client
+  /** Google Maps API Key */
   private readonly key
 
   constructor (apiKey: string) {
@@ -19,6 +21,10 @@ export class MapsAPIHelper {
     this.client = new Client({})
   }
 
+  /**
+   * Uses the Google Maps lib to retrieve all Place suggestions for input `partial`
+   * @param partial your search query
+   */
   public async getPlaces (
     partial: string
   ): Promise<FindPlaceFromTextResponseData> {
@@ -34,6 +40,10 @@ export class MapsAPIHelper {
       .then((r) => r.data)
   }
 
+  /**
+   * Uses the Google Maps lib to retrieve all Place Data for input `placeId`
+   * @param placeId your Place ID to retrieve full Place Data for
+   */
   public async getPlaceData (
     placeId: string
   ): Promise<PlaceDetailsResponseData> {

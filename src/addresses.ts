@@ -4,7 +4,9 @@ import { FindPlaceFromTextResponseData } from '@googlemaps/google-maps-services-
 import { MapsAPIHelper } from './maps-api'
 
 export interface Address {
+  /** Full address */
   fullAddress: string | undefined
+  /** Address parts */
   address: AddressComponent[] | undefined
 }
 
@@ -32,16 +34,26 @@ export class Addresses {
     }
   }
 
+  /**
+   * Given an array of Place ID's, constructs an array of promises and formats them as `Address`
+   * @param ids Array of `place_id`s to retrieve place data for
+   */
   private getAllPlaceData (ids: string[]): Array<Promise<Address>> {
-    return ids
-      .map(
-        async (id) =>
-          await this.mapsHelper
-            .getPlaceData(id)
-            .then((place) => this.cleanAddress(place))
-      )
+    return ids.map(
+      async (id) =>
+        await this.mapsHelper
+          .getPlaceData(id)
+          .then((place) => this.cleanAddress(place))
+    )
   }
 
+  /**
+   * Takes the data response from Maps helper and reduces all the responses into an array of just
+   * `place_id`s. With this, we can retrieve all the extended place data from the API.
+   * @param places The data structure from Google Places API to extract Place ID's for
+   * @returns Array of place id's
+   * Note: Places that do not have a place_id in `places` will be ignored.
+   */
   private extractPlaceIds (places: FindPlaceFromTextResponseData): string[] {
     return places.candidates.reduce((newArr: string[], place) => {
       if (place?.place_id != null) {
@@ -51,12 +63,18 @@ export class Addresses {
     }, [])
   }
 
+  /**
+   * Search the Google Maps Places API for a list of suggestions for matching places.
+   * @param partial Your partial search string to retrieve suggestions for
+   * @returns Array of addresses that may be a match
+   */
   public async all (partial: string): Promise<Address[]> {
     if (partial === '') {
       throw new Error('Please input a search query.')
     }
     /** All of the GMaps internal Place ID's of the results for @param `partial` */
     const allPlaceMatches = await this.mapsHelper.getPlaces(partial)
+
     // Map down to just each candidate's `place_id`.
     const allPlaceIds = this.extractPlaceIds(allPlaceMatches)
 
