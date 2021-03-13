@@ -1,22 +1,18 @@
 # backend-maps-challenge
 
-## Requirements
-
-- [Node Version Manager](https://github.com/nvm-sh/nvm)
-  1. Install nvm according to the link above.
-  2. `cd` to project directory
-  3. Install the matching node version for this application with `nvm install`
-  4. Activate that version for use in this terminal session with `nvm use`.
+A node module coding challenge for retrieving google maps results based on string input
 
 ## Challenge master guide
 
-`npm ci` clean install build and runtime dependencies
+1. Modify `.env` to include your Google Maps API Key.
 
-`npm run build:debug` to build the debugging wrapper for the main node module
+2. `npm ci` clean install build and runtime dependencies.
 
-`npm run start:debug` to run the debug wrapper app once.
+3. `npm run build:debug` to build the debugging wrapper for the main node module.
 
-You can configure what the search criteria is in (debug.ts)[./debug.ts]
+4. `npm run start:debug` to run the debug wrapper app once.
+
+> You can configure what the search criteria is in [debug.ts](./debug.ts).
 
 ## Development
 
