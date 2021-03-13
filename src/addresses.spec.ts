@@ -17,3 +17,20 @@ describe('Addresses', () => {
     expect(() => new Addresses('')).toThrowError()
   })
 })
+
+// Integration tests
+describe('Addresses `all`', () => {
+  let addresses: Addresses
+
+  beforeEach(() => {
+    addresses = new Addresses(validKey)
+  })
+
+  it('should fetch all', async () => {
+    await expect(addresses.all('Brisbane')).toBeTruthy()
+  })
+
+  it('should fail if input is empty', async () => {
+    await expect(addresses.all('')).rejects.toThrowError()
+  })
+})
