@@ -1,7 +1,4 @@
-import {
-  Client,
-  PlaceInputType
-} from '@googlemaps/google-maps-services-js'
+import { Client, PlaceInputType } from '@googlemaps/google-maps-services-js'
 import { PlaceDetailsResponseData } from '@googlemaps/google-maps-services-js/dist/places/details'
 import { FindPlaceFromTextResponseData } from '@googlemaps/google-maps-services-js/dist/places/findplacefromtext'
 

@@ -40,7 +40,8 @@ describe('MapsAPIHelper get places and place data', () => {
 
   it('should get place data from a place id', async () => {
     const places = await mapsApiHelper.getPlaces('Brisbane')
-    const placeId = places.candidates[0].place_id ?? 'ChIJM9KTrJpXkWsRQK_e81qjAgQ'
+    const placeId =
+      places.candidates[0].place_id ?? 'ChIJM9KTrJpXkWsRQK_e81qjAgQ'
     const placeData = await mapsApiHelper.getPlaceData(placeId)
     expect(placeData).toBeTruthy()
   })
