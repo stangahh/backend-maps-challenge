@@ -8,14 +8,36 @@
   3. Install the matching node version for this application with `nvm install`
   4. Activate that version for use in this terminal session with `nvm use`.
 
-## Dev
+## Development
+
+### Dev
+
+This command will watch for changes on the source code and automatically recompile.
 
 ```bash
 npm run dev
 ```
 
-## Build
+### Build
 
 ```bash
 npm run build
 ```
+
+### Test
+
+This will run the Jest unit and integration tests
+
+```bash
+npm run test
+```
+
+This will watch for changes in any test files and automatically re-test
+
+```bash
+npm run test:watch
+```
+
+### Committing
+
+Before committing, the application will automatically run lint and test checks against your changes.
