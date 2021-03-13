@@ -1,6 +1,6 @@
 // Public API Surface
 export { Address } from './addresses'
-export { Addresses as GetAddresses } from './addresses'
+export { Addresses } from './addresses'
 
 // TODO: Remove below *
 /* eslint-disable import/first */
