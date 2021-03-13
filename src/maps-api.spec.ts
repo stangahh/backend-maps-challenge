@@ -1,4 +1,4 @@
-import { MapsAPIHelper } from './helper'
+import { MapsAPIHelper } from './maps-api'
 
 const validKey = process.env.MAPS_API_KEY ?? 'SOME_VALID_KEY'
 
@@ -18,7 +18,7 @@ describe('MapsAPIHelper', () => {
   })
 
   // Can't really test whether a key is actually capable of calling the API until we try calling it
-  // We'll handle that in the integration tests.
+  // We'll handle that via the integration tests.
 })
 
 // Integration tests
@@ -45,5 +45,3 @@ describe('MapsAPIHelper get places and place data', () => {
     expect(placeData).toBeTruthy()
   })
 })
-
-// Unit tests
