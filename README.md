@@ -23,7 +23,7 @@ A node module coding challenge for retrieving google maps results based on strin
 This command will watch for changes on the source code and automatically recompile.
 
 ```bash
-npm run dev
+npm run build:watch
 ```
 
 ### Build
