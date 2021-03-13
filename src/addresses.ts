@@ -1,5 +1,6 @@
 import { AddressComponent } from '@googlemaps/google-maps-services-js'
 import { PlaceDetailsResponseData } from '@googlemaps/google-maps-services-js/dist/places/details'
+import { FindPlaceFromTextResponseData } from '@googlemaps/google-maps-services-js/dist/places/findplacefromtext'
 import { MapsAPIHelper } from './maps-api'
 
 export interface Address {
@@ -33,7 +34,6 @@ export class Addresses {
 
   private getAllPlaceData (ids: string[]): Array<Promise<Address>> {
     return ids
-      .filter((id) => id !== '')
       .map(
         async (id) =>
           await this.mapsHelper
@@ -42,17 +42,23 @@ export class Addresses {
       )
   }
 
+  private extractPlaceIds (places: FindPlaceFromTextResponseData): string[] {
+    return places.candidates.reduce((newArr: string[], place) => {
+      if (place?.place_id != null) {
+        newArr.push(place.place_id)
+      }
+      return newArr
+    }, [])
+  }
+
   public async all (partial: string): Promise<Address[]> {
     if (partial === '') {
       throw new Error('Please input a search query.')
     }
     /** All of the GMaps internal Place ID's of the results for @param `partial` */
     const allPlaceMatches = await this.mapsHelper.getPlaces(partial)
-
     // Map down to just each candidate's `place_id`.
-    const allPlaceIds = allPlaceMatches.candidates.map(
-      (place) => place.place_id ?? ''
-    )
+    const allPlaceIds = this.extractPlaceIds(allPlaceMatches)
 
     // Create array of promises that we can resolve to the per field data for each place.
     const allPlaceData = this.getAllPlaceData(allPlaceIds)
