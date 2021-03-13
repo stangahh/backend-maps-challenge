@@ -8,7 +8,19 @@
   3. Install the matching node version for this application with `nvm install`
   4. Activate that version for use in this terminal session with `nvm use`.
 
+## Challenge master guide
+
+`npm ci` clean install build and runtime dependencies
+
+`npm run build:debug` to build the debugging wrapper for the main node module
+
+`npm run start:debug` to run the debug wrapper app once.
+
+You can configure what the search criteria is in (debug.ts)[./debug.ts]
+
 ## Development
+
+`npm install` all dependencies
 
 ### Dev
 
