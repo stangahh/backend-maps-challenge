@@ -78,13 +78,13 @@ describe('ParseAddressComponents', () => {
     expect(service.formatAsAddress(mock1)).toBeTruthy()
   })
 
-  it('should error when no types given in an object', () => {
-    expect(() => service.formatAsAddress(mock2)).toThrow(Error)
+  it('should not include property of unknown type', () => {
+    expect(JSON.stringify(service.formatAsAddress(mock2))).not.toContain('Brisbane')
   })
 
-  it('should error when an unknown type is provided', () => {
+  it('should not include property of invalid type', () => {
     // Typescript compiler should prevents this from happening, but could still happen if theres
     // some  awful casting happening in the source of `@googlemaps` i guess.
-    expect(() => service.formatAsAddress(mock3)).toThrow(Error)
+    expect(JSON.stringify(service.formatAsAddress(mock3))).not.toContain('Australia')
   })
 })

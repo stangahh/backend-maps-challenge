@@ -34,11 +34,11 @@ export class ParseAddressComponents {
         return isAddressType || isGeoAddressType
       })
 
-      // early return for if theres no type. This should never happen, but its here to be type safe
+      // Don't process types that are unknown, just return
       if (type == null) {
-        throw new Error(
-          `Internal Error when parsing types on: '${comp.types.toString()}'. Address type does not exist in known set of types`
-        )
+        return {
+          ...acc
+        }
       }
 
       // accumulate into key value pairs of AddressType to its long name
