@@ -13,7 +13,7 @@ dotenv.config()
 
 const getAddresses = new Addresses(process.env.MAPS_API_KEY ?? '')
 
-const SEARCH_CRITERIA = '123'
+const SEARCH_CRITERIA = 'Brisbane'
 
 /* eslint-disable no-void */
 
