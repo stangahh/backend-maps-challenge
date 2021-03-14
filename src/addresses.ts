@@ -70,8 +70,9 @@ export class Addresses {
    */
   public async all (partial: string): Promise<Address[]> {
     if (partial === '') {
-      throw new Error('Please input a search query.')
+      return []
     }
+
     /** All of the GMaps internal Place ID's of the results for @param `partial` */
     const allPlaceMatches = await this.mapsHelper.getPlaces(partial)
 
