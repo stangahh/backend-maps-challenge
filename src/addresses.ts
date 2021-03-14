@@ -1,13 +1,14 @@
-import { AddressComponent } from '@googlemaps/google-maps-services-js'
 import { PlaceDetailsResponseData } from '@googlemaps/google-maps-services-js/dist/places/details'
 import { FindPlaceFromTextResponseData } from '@googlemaps/google-maps-services-js/dist/places/findplacefromtext'
+import { AddressParts, ParseAddressComponents } from './address-components'
 import { MapsAPIHelper } from './maps-api'
 
+/** Structure of a returned address from your search */
 export interface Address {
   /** Full address */
   fullAddress: string | undefined
   /** Address parts */
-  address: AddressComponent[] | undefined
+  address: AddressParts
 }
 
 export class Addresses {
@@ -26,11 +27,10 @@ export class Addresses {
    * @returns A simple `Address` object containing the full address and all its 'parts'
    */
   private cleanAddress (data: PlaceDetailsResponseData): Address {
+    const parser = new ParseAddressComponents()
     return {
       fullAddress: data.result.formatted_address,
-      // TODO: Parse this data more thoroughly using the `AddressType` enum exported by `@googlemaps`
-      // Pro: cleaner output data structure. Con: High maintenance
-      address: data.result.address_components
+      address: parser.formatAsAddress(data.result.address_components)
     }
   }
 
@@ -70,8 +70,9 @@ export class Addresses {
    */
   public async all (partial: string): Promise<Address[]> {
     if (partial === '') {
-      throw new Error('Please input a search query.')
+      return []
     }
+
     /** All of the GMaps internal Place ID's of the results for @param `partial` */
     const allPlaceMatches = await this.mapsHelper.getPlaces(partial)
 

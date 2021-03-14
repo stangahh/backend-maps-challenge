@@ -13,26 +13,14 @@ dotenv.config()
 
 const getAddresses = new Addresses(process.env.MAPS_API_KEY ?? '')
 
-const SEARCH_CRITERIA = '123'
+const SEARCHES = ['', 'ADDRESS_WITH_NO_RESULTS', 'amel', 'Brisbane', 'Sakuranbohigashine']
 
 /* eslint-disable no-void */
 
 // Valid Address
-void getAddresses
-  .all(SEARCH_CRITERIA)
-  .then(async (d) => {
-    console.log('Valid Address', JSON.stringify(d))
+SEARCHES.forEach((search) => {
+  void getAddresses.all(search).then((result) => {
+    console.log(`Your search: '${search}'`)
+    console.log('Result:\n', result, '\n')
   })
-  .catch((e) => {
-    console.log('Valid Address error:', e)
-  })
-
-// Address that doesnt exist
-void getAddresses
-  .all('justsomethingsuperarbitrary')
-  .then(async (d) => {
-    console.log('Address that doesnt exist', JSON.stringify(d))
-  })
-  .catch((e) => {
-    console.log('Address that doesnt exist error:', e)
-  })
+})

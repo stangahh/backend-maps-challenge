@@ -31,6 +31,6 @@ describe('Addresses `all`', () => {
   })
 
   it('should fail if input is empty', async () => {
-    await expect(addresses.all('')).rejects.toThrowError()
+    expect(await addresses.all('')).toEqual([])
   })
 })
