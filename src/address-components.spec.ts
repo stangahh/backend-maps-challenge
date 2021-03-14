@@ -70,8 +70,8 @@ describe('ParseAddressComponents', () => {
     expect(service).toBeTruthy()
   })
 
-  it('should error when given undefined', () => {
-    expect(service.formatAsAddress(undefined)).toThrowError()
+  it('should return empty array when given undefined', () => {
+    expect(service.formatAsAddress(undefined)).toEqual({})
   })
 
   it('should work', () => {
@@ -79,12 +79,12 @@ describe('ParseAddressComponents', () => {
   })
 
   it('should error when no types given in an object', () => {
-    expect(service.formatAsAddress(mock2)).toThrowError()
+    expect(() => service.formatAsAddress(mock2)).toThrow(Error)
   })
 
   it('should error when an unknown type is provided', () => {
     // Typescript compiler should prevents this from happening, but could still happen if theres
     // some  awful casting happening in the source of `@googlemaps` i guess.
-    expect(service.formatAsAddress(mock3)).toThrowError()
+    expect(() => service.formatAsAddress(mock3)).toThrow(Error)
   })
 })

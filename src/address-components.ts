@@ -37,7 +37,7 @@ export class ParseAddressComponents {
       // early return for if theres no type. This should never happen, but its here to be type safe
       if (type == null) {
         throw new Error(
-          `Internal Error when parsing types on: ${comp.types.toString()}`
+          `Internal Error when parsing types on: '${comp.types.toString()}'. Address type does not exist in known set of types`
         )
       }
 
